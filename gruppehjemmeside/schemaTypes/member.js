@@ -7,30 +7,29 @@ export default {
         name: 'name',
         title: 'Name',
         type: 'string',
+        validation: Rule => Rule.required()
       },
       {
         name: 'email',
         title: 'Email',
-        type: 'string',
+        type: 'string'
       },
       {
         name: 'image',
         title: 'Profile Image',
         type: 'image',
-        options: {
-          hotspot: true,
-        },
+        options: { hotspot: true }
       },
       {
         name: 'interests',
         title: 'Interests',
         type: 'array',
-        of: [{ type: 'string' }],
+        of: [{ type: 'string' }]
       },
       {
         name: 'bio',
         title: 'Biography',
-        type: 'text',
+        type: 'text'
       },
       {
         name: 'slug',
@@ -44,8 +43,9 @@ export default {
               .toLowerCase()
               .replace(/\s+/g, '-')
               .slice(0, 96)
-        }
+        },
+        validation: Rule => Rule.required()
       }
-    ],
-  };
+    ]
+  }
   

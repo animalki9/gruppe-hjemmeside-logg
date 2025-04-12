@@ -1,0 +1,44 @@
+.header {
+    background-color: #4B2E83;
+    color: white;
+    display: flex;
+    justify-content: space-between; // <- viktig!
+    align-items: center;
+    padding: 1rem 2rem;
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+  
+    // Sikrer at header alltid tar hele bredden
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .header__title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    white-space: nowrap;
+  }
+  
+  .header__nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  
+    a {
+      color: white;
+      text-decoration: none;
+      margin: 0 0.5rem;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  
+    .nav-divider {
+      width: 1px;
+      height: 20px;
+      background-color: white;
+      margin: 0 0.5rem;
+    }
+  }
+  

@@ -1,29 +1,35 @@
 export default {
     name: 'workLog',
-    title: 'Work log',
+    title: 'Work Log',
     type: 'document',
     fields: [
-        {
-            name: 'title',
-            title: 'Title',
-            type: 'string',
-        },
-        {
-            name: 'description',
-            title: 'Task description',
-            type: 'text',
-        },
-        {
-            name: 'date',
-            title: 'Date',
-            type: 'datetime',
-            initialValue: () => new Date().toISOString(), //Fått hjälp av chatgpt så att datum och tid kommer upp automatiskt.
-        },
-        {
-            name: 'author',
-            title: 'Author',
-            type: 'reference',
-            to: [{ type: 'member' }],
-        },
-    ],
-};
+      {
+        name: 'title',
+        title: 'Title',
+        type: 'string'
+      },
+      {
+        name: 'description',
+        title: 'Task Description',
+        type: 'text'
+      },
+      {
+        name: 'date',
+        title: 'Date',
+        type: 'datetime',
+        initialValue: () => new Date().toISOString()
+      },
+      {
+        name: 'author',
+        title: 'Author',
+        type: 'reference',
+        to: [{ type: 'member' }]
+      },
+      {
+        name: 'timer',
+        title: 'Time Used (hours)',
+        type: 'number'
+      }
+    ]
+  }
+  
