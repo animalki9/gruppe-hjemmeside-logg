@@ -1,44 +1,51 @@
 .header {
-    background-color: #4B2E83;
-    color: white;
-    display: flex;
-    justify-content: space-between; // <- viktig!
-    align-items: center;
-    padding: 1rem 2rem;
-    font-family: 'Georgia', serif;
-    font-size: 1rem;
-  
-    // Sikrer at header alltid tar hele bredden
     width: 100%;
+    background-color: #4b2e83;
+    color: white;
+    padding: 1rem;
     box-sizing: border-box;
-  }
-  
-  .header__title {
-    font-weight: bold;
-    font-size: 1.2rem;
-    white-space: nowrap;
-  }
-  
-  .header__nav {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
   
-    a {
-      color: white;
-      text-decoration: none;
-      margin: 0 0.5rem;
+    &__title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
   
-      &:hover {
-        text-decoration: underline;
+    &__nav {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+  
+      a {
+        color: white;
+        text-decoration: none;
+        font-weight: normal;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+  
+      .nav-divider {
+        width: 1px;
+        background: white;
+        height: 1rem;
       }
     }
   
-    .nav-divider {
-      width: 1px;
-      height: 20px;
-      background-color: white;
-      margin: 0 0.5rem;
+    @media (min-width: 768px) {
+      flex-wrap: nowrap;
+      &__title {
+        font-size: 1.5rem;
+      }
+      &__nav {
+        gap: 1.5rem;
+      }
     }
   }
   

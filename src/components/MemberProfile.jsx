@@ -1,66 +1,39 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import sanityClient from '../sanityClient'
+import WorkLogTable from './WorkLogTable'
 
-export default function MemberProfile() {
+const MemberProfile = () => {
   const { slug } = useParams()
-  const [person, setPerson] = useState(null)
-  const [personLogs, setPersonLogs] = useState([])
+  const [member, setMember] = useState(null)
+  const [logs, setLogs] = useState([])
 
   useEffect(() => {
-    // Hent medlem basert på slug
-    sanityClient
-      .fetch(`*[_type == "member" && slug.current == $slug][0]{
-        name,
-        email,
-        image{asset->{url}},
-        interests,
-        bio,
-        _id
-      }`, { slug })
-      .then((data) => {
-        setPerson(data)
-
-        // Hent arbeidslogg koblet til denne personen
-        if (data?._id) {
-          sanityClient
-            .fetch(`*[_type == "workLog" && author._ref == $id] | order(date desc){
-              title,
-              description,
-              date,
-              timer
-            }`, { id: data._id })
-            .then(setPersonLogs)
-        }
-      })
+    sanityClient.fetch(`*[_type == "member" && slug.current == $slug][0]{
+      _id, name, email, image{asset->{url}}, interests, bio
+    }`, { slug }).then(setMember)
   }, [slug])
 
-  if (!person) return <p>Laster persondata...</p>
+  useEffect(() => {
+    if (member?._id) {
+      sanityClient.fetch(`*[_type == "workLog" && author._ref == $id]{ title, date, timer }`, { id: member._id })
+        .then(setLogs)
+    }
+  }, [member])
+
+  if (!member) return <p>Laster...</p>
 
   return (
-    <div>
-      <img src={person.image?.asset?.url} alt={person.name} style={{ maxWidth: '200px' }} />
-      <h2>{person.name}</h2>
-      <p>{person.email}</p>
-      {person.interests?.length > 0 && (
-        <p><strong>Interesser:</strong> {person.interests.join(', ')}</p>
-      )}
-      <p><strong>Om:</strong> {person.bio}</p>
-
+    <div className="profil">
+      <img src={member.image?.asset?.url} alt={member.name} style={{ maxWidth: '200px' }} />
+      <h2>{member.name}</h2>
+      <p>{member.email}</p>
+      <p><strong>Interesser:</strong> {member.interests?.join(', ')}</p>
+      <p><strong>Om:</strong> {member.bio}</p>
       <h3>Arbeidslogg</h3>
-      {personLogs.length > 0 ? (
-        <ul>
-          {personLogs.map((log, i) => (
-            <li key={i}>
-              {log.date?.slice(0, 10)} – {log.title} ({log.timer}t)
-              <br />
-              {log.description}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Ingen loggføringer ennå.</p>
-      )}
+      <WorkLogTable logs={logs} />
     </div>
   )
 }
+
+export default MemberProfile

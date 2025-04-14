@@ -1,0 +1,43 @@
+.arbeidslogg {
+    margin-top: 3rem;
+  
+    h2 {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+  
+      th, td {
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+  
+      th {
+        background-color: #f8f8f8;
+      }
+  
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+  
+      td:last-child {
+        text-align: right;
+      }
+    }
+  
+    @media (max-width: 500px) {
+      table {
+        font-size: 0.8rem;
+  
+        th, td {
+          padding: 0.4rem 0.6rem;
+        }
+      }
+    }
+  }
+  
