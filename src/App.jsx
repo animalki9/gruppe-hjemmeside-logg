@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import client from './sanityClient'
 
+// Komponenter
 import Layout from './components/Layout'
 import Forside from './components/Forside'
 import MemberProfile from './components/MemberProfile'
 
+// Stiler
 import './styles/header.scss'
 import './styles/layout.scss'
 import './styles/membercard.scss'
@@ -13,16 +15,16 @@ import './styles/worklog.scss'
 import './styles/forside.scss'
 import './App.css'
 
-
-
-
 function App() {
+  // Lager state for medlemmer og arbeidslogger
   const [members, setMembers] = useState([])
   const [logs, setLogs] = useState([])
 
+  // Kjører når appen starter – henter data fra Sanity
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Henter medlemmer fra Sanity
         const memberData = await client.fetch(
           `*[_type == "member"]{
             _id,
@@ -36,6 +38,7 @@ function App() {
         )
         setMembers(memberData)
 
+        // Henter arbeidslogg og sorterer etter dato
         const logData = await client.fetch(
           `*[_type == "workLog"] | order(date desc){
             title,
@@ -47,6 +50,7 @@ function App() {
         )
         setLogs(logData)
 
+        // Skriver ut til konsollen (valgfritt)
         console.log("✅ Medlemmer:", memberData)
         console.log("✅ Arbeidslogg:", logData)
       } catch (err) {
@@ -59,9 +63,13 @@ function App() {
 
   return (
     <Router>
+      {/* Layout med header og innhold */}
       <Layout members={members}>
         <Routes>
+          {/* Forsiden med kort og felles logg */}
           <Route path="/" element={<Forside members={members} logs={logs} />} />
+
+          {/* Profilside for hvert medlem */}
           <Route path="/profile/:slug" element={<MemberProfile />} />
         </Routes>
       </Layout>
