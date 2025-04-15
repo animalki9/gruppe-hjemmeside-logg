@@ -1,0 +1,64 @@
+.profil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  
+    img {
+      width: 200px;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+  
+    .profil-info {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 2rem;
+  
+      h2 {
+        margin-top: 0.5rem;
+      }
+  
+      p {
+        margin: 0.25rem 0;
+      }
+  
+      ul {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+        text-align: left;
+        margin: 0 auto 1rem;
+        max-width: 500px;
+      }
+    }
+  
+    .arbeidslogg {
+      width: 100%;
+    }
+  }
+  .arbeidslogg-seksjon {
+    max-width: 1000px;
+    margin: 0 auto 2rem;
+    padding: 0 1rem;
+  }
+  
+  
+  @media (min-width: 768px) {
+    .profil {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+  
+      img {
+        flex-shrink: 0;
+        margin-bottom: 0;
+      }
+  
+      .profil-info {
+        text-align: left;
+      }
+    }
+  }
+  

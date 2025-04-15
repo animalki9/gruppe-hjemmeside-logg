@@ -14,6 +14,8 @@ import './styles/membercard.scss'
 import './styles/worklog.scss'
 import './styles/forside.scss'
 import './App.css'
+import './styles/memberprofile.scss'
+
 
 function App() {
   // Lager state for medlemmer og arbeidslogger

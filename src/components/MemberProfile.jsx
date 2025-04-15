@@ -2,49 +2,69 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import sanityClient from '../sanityClient'
 import WorkLogTable from './WorkLogTable'
+import '../styles/memberprofile.scss'
 
 // Komponent som viser én medlemsprofil basert på slug i URL
 const MemberProfile = () => {
-  const { slug } = useParams() // Henter slug fra URL
-  const [member, setMember] = useState(null) // Lagrer data om medlemmet
-  const [logs, setLogs] = useState([])       // Lagrer loggføringer for medlemmet
+  const { slug } = useParams()
+  const [member, setMember] = useState(null)
+  const [logs, setLogs] = useState([])
 
-  // Henter medlemsdata fra Sanity basert på slug
+  // Henter medlemsdata
   useEffect(() => {
     sanityClient.fetch(`*[_type == "member" && slug.current == $slug][0]{
       _id, name, email, image{asset->{url}}, interests, bio
     }`, { slug }).then(setMember)
   }, [slug])
 
-  // Når vi har fått medlemmet, henter vi loggene til den personen
+  // Henter arbeidslogger for medlemmet
   useEffect(() => {
     if (member?._id) {
-      sanityClient.fetch(`*[_type == "workLog" && author._ref == $id]{ title, date, timer }`, { id: member._id })
-        .then(setLogs)
+      sanityClient.fetch(
+        `*[_type == "workLog" && author._ref == $id]{
+            title,
+            date,
+            timer,
+            author->{
+                name
+            }
+            }`
+            ,
+        { id: member._id }
+      ).then(setLogs)
     }
   }, [member])
 
-  // Viser "Laster..." mens data hentes
   if (!member) return <p>Laster...</p>
 
   return (
-    <div className="profil">
-      {/* Bilde og informasjon om medlemmet */}
-      <img src={member.image?.asset?.url} alt={member.name} style={{ maxWidth: '200px' }} />
-      <h2>{member.name}</h2>
-      <p>{member.email}</p>
-      <p><strong>Interesser:</strong> {member.interests?.join(', ')}</p>
-      <p><strong>Om:</strong> {member.bio}</p>
+    <>
+      <div className="profil">
+        {/* Profilbilde */}
+        <img src={member.image?.asset?.url} alt={member.name} />
 
-      {/* Viser arbeidsloggen til dette medlemmet */}
-      <h3>Arbeidslogg</h3>
-      <WorkLogTable logs={logs} />
-    </div>
+        {/* Info */}
+        <div className="profil-info">
+          <h2>{member.name}</h2>
+
+          {/* Flyttet bio rett under navn */}
+          <p>{member.bio}</p>
+          <p><strong>Interesser:</strong></p>
+          <ul>
+            {member.interests?.map((interest, i) => (
+              <li key={i}>{interest}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Arbeidsloggen vises separat under profilen */}
+      <div className="arbeidslogg-seksjon">
+        <h3>Arbeidslogg</h3>
+        <WorkLogTable logs={logs} />
+      </div>
+    </>
   )
 }
 
 export default MemberProfile
-// Kilder:
-// React Router – useParams: https://reactrouter.com/en/main/hooks/use-params
-// React useState og useEffect: https://react.dev/learn/synchronizing-with-effects
-// Sanity-klient og spørring med variabler: https://www.sanity.io/docs/how-to-use-query-parameters
