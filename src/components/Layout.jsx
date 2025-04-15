@@ -14,7 +14,7 @@ export default function Layout({ children, members }) {
     </div>
   )
 }
-// KILDER:
+// Kilder:
 // React-komponenter og props: https://react.dev/learn/passing-props-to-a-component
 // React children-prop (for å vise innhold dynamisk): https://react.dev/reference/react/Children
 // React-komponentstruktur og oppdeling: https://react.dev/learn/thinking-in-react

@@ -37,8 +37,8 @@ const Header = ({ members }) => {
 }
 
 export default Header
-// KILDER:
+// Kilder:
 // React useEffect og useState: https://react.dev/reference/react/useEffect
-// Sanity JavaScript-klient (datahenting): https://www.sanity.io/docs/js-client
-// React Router (Link-komponent): https://reactrouter.com/en/main/components/link
+// Sanity JavaScript-klient: https://www.sanity.io/docs/js-client
+// React Router: https://reactrouter.com/en/main/components/link
 

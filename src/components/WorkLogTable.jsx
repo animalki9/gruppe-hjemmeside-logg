@@ -28,8 +28,7 @@ const WorkLogTable = ({ logs }) => (
 )
 
 export default WorkLogTable
-// KILDER:
+// Kilder:
 // React-komponenter og props: https://react.dev/learn/your-first-component
 // JavaScript .map() funksjon: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
-// Optional chaining (?.) i JavaScript: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
 // HTML tabellstruktur (table, thead, tbody): https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table

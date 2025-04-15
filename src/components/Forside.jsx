@@ -77,10 +77,10 @@ export default function Forside() {
   )
 }
 
-// KILDER:
+// Kilder:
 // React useEffect og useState: https://react.dev/reference/react/useEffect
 // Sanity-spørringer med GROQ: https://www.sanity.io/docs/query-cheat-sheet
 // Sanity JavaScript-klient: https://www.sanity.io/docs/js-client
-// React Router (Link-komponent): https://reactrouter.com/en/main/components/link
+// React Router: https://reactrouter.com/en/main/components/link
 // HTML-tabell-elementer: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table
 

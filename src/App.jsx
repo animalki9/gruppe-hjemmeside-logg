@@ -78,7 +78,7 @@ function App() {
 }
 
 export default App
-// KILDER:
+// Kilder:
 // React useEffect og useState: https://react.dev/learn/synchronizing-with-effects
 // React Router – Routes, Route, BrowserRouter: https://reactrouter.com/en/main/start/tutorial
 // Sanity-klient og dataspørring (GROQ): https://www.sanity.io/docs/js-client

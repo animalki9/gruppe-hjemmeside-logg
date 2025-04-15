@@ -44,8 +44,7 @@ const MemberProfile = () => {
 }
 
 export default MemberProfile
-// KILDER:
+// Kilder:
 // React Router – useParams: https://reactrouter.com/en/main/hooks/use-params
 // React useState og useEffect: https://react.dev/learn/synchronizing-with-effects
 // Sanity-klient og spørring med variabler: https://www.sanity.io/docs/how-to-use-query-parameters
-// Optional chaining (?.) i JavaScript: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
