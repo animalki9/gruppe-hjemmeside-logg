@@ -18,3 +18,7 @@ const MemberCard = ({ member }) => (
 )
 
 export default MemberCard
+// KILDER:
+// React-komponenter og props: https://react.dev/learn/your-first-component
+// React Router – Link-komponent: https://reactrouter.com/en/main/components/link
+// Optional chaining (?.) i JavaScript: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining

@@ -51,8 +51,8 @@ function App() {
         setLogs(logData)
 
         // Skriver ut til konsollen (valgfritt)
-        console.log("✅ Medlemmer:", memberData)
-        console.log("✅ Arbeidslogg:", logData)
+        console.log("Medlemmer:", memberData)
+        console.log("Arbeidslogg:", logData)
       } catch (err) {
         console.error("Feil ved henting fra Sanity:", err)
       }
@@ -78,3 +78,8 @@ function App() {
 }
 
 export default App
+// KILDER:
+// React useEffect og useState: https://react.dev/learn/synchronizing-with-effects
+// React Router – Routes, Route, BrowserRouter: https://reactrouter.com/en/main/start/tutorial
+// Sanity-klient og dataspørring (GROQ): https://www.sanity.io/docs/js-client
+// JavaScript async/await: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises
